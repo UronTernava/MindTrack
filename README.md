@@ -40,7 +40,7 @@
    ```
 
 ## License
-This project is **proprietary**. No use, distribution, or modification is allowed without explicit written permission. See [LICENSE](../LICENSE) for details.
+This project is **proprietary**. No use, distribution, or modification is allowed without explicit written permission. See [LICENSE](LICENSE) for details.
 
 ## Author & Contact
 - **Uron Tërnava**
