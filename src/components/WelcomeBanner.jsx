@@ -1,5 +1,6 @@
 import React, { useMemo } from "react";
 import { Canvas } from "@react-three/fiber";
+import ReleaseOnScroll from "./ReleaseOnScroll";
 
 function getGreeting() {
   const hour = new Date().getHours();
@@ -36,26 +37,32 @@ export default function WelcomeBanner() {
   const isDark = typeof window !== 'undefined' && document.documentElement.classList.contains('dark');
 
   return (
-    <div className={`relative p-6 mb-8 rounded-2xl overflow-hidden shadow-xl border-2 ${isDark ? 'bg-[#f3f4f6] text-[#23272e] border-[#bdbdbd]' : 'bg-[#23272e] text-[#f3f4f6] border-[#23272e]'}`}>
-      <div className="relative flex items-center z-10">
-        {/* 3D Orb */}
-        <div className="w-24 h-24 mr-6 flex-shrink-0">
-          <Canvas camera={{ position: [0, 0, 3] }}>
-            <ambientLight intensity={0.8} />
-            <directionalLight position={[2, 2, 2]} intensity={1.1} />
-            <FloatingOrb />
-          </Canvas>
-        </div>
-        <div>
-          <h3 className="text-2xl font-bold drop-shadow-lg">{greeting} <span className="align-middle">👋</span></h3>
-          <p className="mt-1 text-base drop-shadow">
-            How are you feeling today? Track your mood to see patterns over time.
-          </p>
-          <div className="mt-3 text-sm italic animate-fade-in">
-            "{quote}"
-          </div>
+    <ReleaseOnScroll>
+      <div className={`relative p-6 mb-8 rounded-2xl overflow-hidden shadow-xl border-2 ${isDark ? 'bg-[#f3f4f6] text-[#23272e] border-[#bdbdbd]' : 'bg-[#23272e] text-[#f3f4f6] border-[#23272e]'}`}>
+        <div className="relative flex items-center z-10">
+          {/* 3D Orb */}
+          <ReleaseOnScroll delay={200}>
+            <div className="w-24 h-24 mr-6 flex-shrink-0">
+              <Canvas camera={{ position: [0, 0, 3] }}>
+                <ambientLight intensity={0.8} />
+                <directionalLight position={[2, 2, 2]} intensity={1.1} />
+                <FloatingOrb />
+              </Canvas>
+            </div>
+          </ReleaseOnScroll>
+          <ReleaseOnScroll delay={400}>
+            <div>
+              <h3 className="text-2xl font-bold drop-shadow-lg">{greeting} <span className="align-middle">👋</span></h3>
+              <p className="mt-1 text-base drop-shadow">
+                How are you feeling today? Track your mood to see patterns over time.
+              </p>
+              <div className="mt-3 text-sm italic animate-fade-in">
+                "{quote}"
+              </div>
+            </div>
+          </ReleaseOnScroll>
         </div>
       </div>
-    </div>
+    </ReleaseOnScroll>
   );
 }

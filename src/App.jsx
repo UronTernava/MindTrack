@@ -6,6 +6,7 @@ import MoodHistory from "./components/MoodHistory";
 import AboutSection from "./components/AboutSection";
 import WelcomeBanner from "./components/WelcomeBanner";
 import ResourcesSection from "./components/ResourcesSection";
+import LoadingScreen from "./components/LoadingScreen";
 import { Routes, Route } from 'react-router-dom';
 import Register from './components/Register';
 import Login from './components/Login';
@@ -18,6 +19,7 @@ export default function App() {
   const [entries, setEntries] = useState([]);
   const [darkMode, setDarkMode] = useState(false);
   const [user, setUser] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Section refs for smooth scrolling
   const welcomeRef = useRef(null);
@@ -30,9 +32,22 @@ export default function App() {
     document.documentElement.classList.toggle("dark", darkMode);
   }, [darkMode]);
 
+  useEffect(() => {
+    // Show loading screen for 2 seconds
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   const handleNewEntry = (entry) => {
     setEntries([...entries, entry]);
   };
+
+  if (isLoading) {
+    return <LoadingScreen />;
+  }
 
   return (
     <div className={darkMode ? 'dark' : ''}>

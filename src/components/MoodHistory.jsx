@@ -1,5 +1,6 @@
 import React from "react";
 import { Chart } from "react-chartjs-2";
+import ReleaseOnScroll from "./ReleaseOnScroll";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -58,85 +59,95 @@ export default function MoodHistory({ entries }) {
   };
 
   return (
-    <div className={`relative p-8 shadow-2xl rounded-2xl overflow-hidden animate-fade-in border-2 ${isDark ? 'bg-[#f3f4f6] text-[#23272e] border-[#bdbdbd]' : 'bg-[#23272e] text-[#f3f4f6] border-[#23272e]'}`}>
-      <h2 className="mb-4 text-2xl font-extrabold">Your Mood History</h2>
-      {entries.length === 0 ? (
-        <p>No entries yet. Add your first mood entry!</p>
-      ) : (
-        <>
-          <div className={`h-64 mb-6 rounded-xl shadow-lg p-2 flex items-center justify-center border-2 ${isDark ? 'bg-[#f3f4f6] text-[#23272e] border-[#bdbdbd]' : 'bg-[#23272e] text-[#f3f4f6] border-[#23272e]'}`}>
-            <Chart
-              type="line"
-              data={chartData}
-              options={{
-                responsive: true,
-                maintainAspectRatio: false,
-                scales: {
-                  y: {
-                    min: 1,
-                    max: 5,
-                    ticks: {
-                      stepSize: 1,
-                      color: chartColors.ticks,
+    <ReleaseOnScroll>
+      <div className={`relative p-8 shadow-2xl rounded-2xl overflow-hidden animate-fade-in border-2 ${isDark ? 'bg-[#f3f4f6] text-[#23272e] border-[#bdbdbd]' : 'bg-[#23272e] text-[#f3f4f6] border-[#23272e]'}`}>
+        <ReleaseOnScroll delay={200}>
+          <h2 className="mb-4 text-2xl font-extrabold">Your Mood History</h2>
+        </ReleaseOnScroll>
+        {entries.length === 0 ? (
+          <ReleaseOnScroll delay={300}>
+            <p>No entries yet. Add your first mood entry!</p>
+          </ReleaseOnScroll>
+        ) : (
+          <>
+            <ReleaseOnScroll delay={300}>
+              <div className={`h-64 mb-6 rounded-xl shadow-lg p-2 flex items-center justify-center border-2 ${isDark ? 'bg-[#f3f4f6] text-[#23272e] border-[#bdbdbd]' : 'bg-[#23272e] text-[#f3f4f6] border-[#23272e]'}`}>
+                <Chart
+                  type="line"
+                  data={chartData}
+                  options={{
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                      y: {
+                        min: 1,
+                        max: 5,
+                        ticks: {
+                          stepSize: 1,
+                          color: chartColors.ticks,
+                        },
+                        grid: {
+                          color: chartColors.grid,
+                        },
+                      },
+                      x: {
+                        ticks: {
+                          color: chartColors.ticks,
+                        },
+                        grid: {
+                          color: chartColors.grid,
+                        },
+                      },
                     },
-                    grid: {
-                      color: chartColors.grid,
+                    plugins: {
+                      legend: {
+                        labels: {
+                          color: chartColors.legend,
+                          font: { weight: 'bold', size: 16 },
+                        },
+                      },
                     },
-                  },
-                  x: {
-                    ticks: {
-                      color: chartColors.ticks,
-                    },
-                    grid: {
-                      color: chartColors.grid,
-                    },
-                  },
-                },
-                plugins: {
-                  legend: {
-                    labels: {
-                      color: chartColors.legend,
-                      font: { weight: 'bold', size: 16 },
-                    },
-                  },
-                },
-              }}
-            />
-          </div>
-          <div className="space-y-4">
-            {entries
-              .slice()
-              .reverse()
-              .map((entry, index) => (
-                <div key={index} className={`pb-4 border-b last:border-0 border-2 ${isDark ? 'border-[#bdbdbd] bg-[#f3f4f6] text-[#23272e]' : 'border-[#23272e] bg-[#23272e] text-[#f3f4f6]'} rounded-xl p-3`}>
-                  <div className="flex items-center justify-between mb-1">
-                    <span className="font-medium">{entry.date}</span>
-                    <span
-                      className={`px-2 py-1 rounded-full text-xs 
-                    ${
-                      entry.mood <= 2
-                        ? isDark ? 'bg-red-200 text-red-900' : 'bg-red-900 text-red-200'
-                        : entry.mood >= 4
-                        ? isDark ? 'bg-green-200 text-green-900' : 'bg-green-900 text-green-200'
-                        : isDark ? 'bg-yellow-200 text-yellow-900' : 'bg-yellow-900 text-yellow-200'
-                    }`}
-                    >
-                      Mood: {entry.mood}/5
-                    </span>
-                  </div>
-                  {entry.journal && (
-                    <p>{entry.journal}</p>
-                  )}
-                  {entry.sentiment && (
-                    <p className="mt-1 text-sm">
-                      Sentiment: {entry.sentiment}
-                    </p>
-                  )}
-                </div>
-              ))}
-          </div>
-        </>
-      )}
-    </div>
+                  }}
+                />
+              </div>
+            </ReleaseOnScroll>
+            <div className="space-y-4">
+              {entries
+                .slice()
+                .reverse()
+                .map((entry, index) => (
+                  <ReleaseOnScroll key={index} delay={400 + (index * 100)}>
+                    <div className={`pb-4 border-b last:border-0 border-2 ${isDark ? 'border-[#bdbdbd] bg-[#f3f4f6] text-[#23272e]' : 'border-[#23272e] bg-[#23272e] text-[#f3f4f6]'} rounded-xl p-3`}>
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="font-medium">{entry.date}</span>
+                        <span
+                          className={`px-2 py-1 rounded-full text-xs 
+                        ${
+                          entry.mood <= 2
+                            ? isDark ? 'bg-red-200 text-red-900' : 'bg-red-900 text-red-200'
+                            : entry.mood >= 4
+                            ? isDark ? 'bg-green-200 text-green-900' : 'bg-green-900 text-green-200'
+                            : isDark ? 'bg-yellow-200 text-yellow-900' : 'bg-yellow-900 text-yellow-200'
+                        }`}
+                        >
+                          Mood: {entry.mood}/5
+                        </span>
+                      </div>
+                      {entry.journal && (
+                        <p>{entry.journal}</p>
+                      )}
+                      {entry.sentiment && (
+                        <p className="mt-1 text-sm">
+                          Sentiment: {entry.sentiment}
+                        </p>
+                      )}
+                    </div>
+                  </ReleaseOnScroll>
+                ))}
+            </div>
+          </>
+        )}
+      </div>
+    </ReleaseOnScroll>
   );
 }
