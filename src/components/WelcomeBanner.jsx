@@ -38,11 +38,11 @@ export default function WelcomeBanner() {
 
   return (
     <ReleaseOnScroll>
-      <div className={`relative p-6 mb-8 rounded-2xl overflow-hidden shadow-xl border-2 ${isDark ? 'bg-[#f3f4f6] text-[#23272e] border-[#bdbdbd]' : 'bg-[#23272e] text-[#f3f4f6] border-[#23272e]'}`}>
-        <div className="relative flex items-center z-10">
+      <div className={`relative p-4 mb-6 rounded-2xl overflow-hidden shadow-xl border-2 sm:p-6 md:p-8 ${isDark ? 'bg-[#f3f4f6] text-[#23272e] border-[#bdbdbd]' : 'bg-[#23272e] text-[#f3f4f6] border-[#23272e]'}`}>
+        <div className="relative flex flex-col items-center text-center sm:flex-row sm:text-left sm:items-start">
           {/* 3D Orb */}
           <ReleaseOnScroll delay={200}>
-            <div className="w-24 h-24 mr-6 flex-shrink-0">
+            <div className="w-16 h-16 mb-4 sm:w-20 sm:h-20 sm:mr-6 sm:mb-0 md:w-24 md:h-24 flex-shrink-0">
               <Canvas camera={{ position: [0, 0, 3] }}>
                 <ambientLight intensity={0.8} />
                 <directionalLight position={[2, 2, 2]} intensity={1.1} />
@@ -51,12 +51,12 @@ export default function WelcomeBanner() {
             </div>
           </ReleaseOnScroll>
           <ReleaseOnScroll delay={400}>
-            <div>
-              <h3 className="text-2xl font-bold drop-shadow-lg">{greeting} <span className="align-middle">👋</span></h3>
-              <p className="mt-1 text-base drop-shadow">
+            <div className="flex-1">
+              <h3 className="text-xl font-bold drop-shadow-lg sm:text-2xl md:text-3xl">{greeting} <span className="align-middle">👋</span></h3>
+              <p className="mt-1 text-sm drop-shadow sm:text-base md:text-lg">
                 How are you feeling today? Track your mood to see patterns over time.
               </p>
-              <div className="mt-3 text-sm italic animate-fade-in">
+              <div className="mt-2 text-xs italic animate-fade-in sm:text-sm md:text-base">
                 "{quote}"
               </div>
             </div>

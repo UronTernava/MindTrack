@@ -59,13 +59,13 @@ export default function App() {
           onLogout={() => setUser(null)}
           sectionRefs={{ welcomeRef, journalRef, statsRef, aboutRef, footerRef }}
         />
-        <main className="flex-grow w-full max-w-4xl px-4 py-8 mx-auto sm:px-6 lg:px-8">
+        <main className="flex-grow w-full max-w-7xl px-3 py-4 mx-auto sm:px-4 sm:py-6 md:px-6 md:py-8 lg:px-8 lg:py-10">
           {/* Always render the main page sections (hidden on auth pages) for Home scroll */}
           <div style={{ position: 'absolute', left: '-9999px', top: 0, height: 0, width: 0, overflow: 'hidden' }} aria-hidden="true">
             <div ref={welcomeRef}>
               <WelcomeBanner user={user} />
             </div>
-            <div className="grid gap-8 mb-12 md:grid-cols-2">
+            <div className="grid gap-4 mb-8 sm:gap-6 md:gap-8 md:grid-cols-2 lg:mb-12">
               <div ref={journalRef}>
                 <MoodEntry onNewEntry={handleNewEntry} user={user} />
               </div>
@@ -82,7 +82,7 @@ export default function App() {
                 <div ref={welcomeRef}>
                   <WelcomeBanner user={user} />
                 </div>
-                <div className="grid gap-8 mb-12 md:grid-cols-2">
+                <div className="grid gap-4 mb-8 sm:gap-6 md:gap-8 md:grid-cols-2 lg:mb-12">
                   <div ref={journalRef}>
                     <MoodEntry onNewEntry={handleNewEntry} user={user} />
                   </div>

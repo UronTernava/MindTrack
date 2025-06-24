@@ -24,39 +24,39 @@ export default function MoodEntry({ onNewEntry, user }) {
 
   return (
     <ReleaseOnScroll>
-      <div className={`relative p-8 shadow-xl rounded-2xl overflow-hidden border-2 ${isDark ? 'bg-[#f3f4f6] text-[#23272e] border-[#bdbdbd]' : 'bg-[#23272e] text-[#f3f4f6] border-[#23272e]'}`}>
+      <div className={`relative p-4 shadow-xl rounded-2xl overflow-hidden border-2 sm:p-6 md:p-8 ${isDark ? 'bg-[#f3f4f6] text-[#23272e] border-[#bdbdbd]' : 'bg-[#23272e] text-[#f3f4f6] border-[#23272e]'}`}>
         {/* Floating emoji orb */}
         <ReleaseOnScroll delay={200}>
-          <div className="absolute -top-8 right-8 z-10 animate-bounce text-5xl drop-shadow-lg">
+          <div className="absolute -top-6 right-4 z-10 animate-bounce text-3xl drop-shadow-lg sm:-top-8 sm:right-8 sm:text-4xl md:text-5xl">
             {moodEmojis[mood - 1]}
           </div>
         </ReleaseOnScroll>
         <ReleaseOnScroll delay={300}>
-          <h2 className="mb-4 text-2xl font-extrabold">How are you feeling today?</h2>
+          <h2 className="mb-4 text-xl font-extrabold sm:text-2xl md:text-3xl">How are you feeling today?</h2>
         </ReleaseOnScroll>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
           <ReleaseOnScroll delay={400}>
             <div>
-              <label className="block mb-2">Date</label>
+              <label className="block mb-1 text-sm sm:text-base">Date</label>
               <input
                 type="date"
                 value={date}
                 onChange={(e) => setDate(e.target.value)}
-                className={`w-full p-2 border rounded-md ${isDark ? 'bg-[#f3f4f6] text-[#23272e] border-[#bdbdbd]' : 'bg-[#23272e] text-[#f3f4f6] border-[#23272e]'}`}
+                className={`w-full p-2 text-sm border rounded-md sm:p-3 sm:text-base ${isDark ? 'bg-[#f3f4f6] text-[#23272e] border-[#bdbdbd]' : 'bg-[#23272e] text-[#f3f4f6] border-[#23272e]'}`}
                 required
               />
             </div>
           </ReleaseOnScroll>
           <ReleaseOnScroll delay={500}>
             <div>
-              <label className="block mb-2">Mood (1-5)</label>
-              <div className="flex justify-between gap-2">
+              <label className="block mb-2 text-sm sm:text-base">Mood (1-5)</label>
+              <div className="flex justify-between gap-1 sm:gap-2">
                 {moodEmojis.map((emoji, idx) => (
                   <button
                     key={emoji}
                     type="button"
                     onClick={() => setMood(idx + 1)}
-                    className={`w-12 h-12 rounded-full flex items-center justify-center text-2xl shadow-lg transition-all duration-200 border-2 
+                    className={`w-10 h-10 rounded-full flex items-center justify-center text-lg shadow-lg transition-all duration-200 border-2 sm:w-12 sm:h-12 sm:text-xl md:text-2xl
                       ${mood === idx + 1 ? (isDark ? 'bg-[#bdbdbd] text-[#23272e] scale-110 border-[#bdbdbd]' : 'bg-[#23272e] text-[#f3f4f6] scale-110 border-[#23272e]') : (isDark ? 'bg-[#f3f4f6] text-[#23272e] border-[#bdbdbd]' : 'bg-[#23272e] text-[#f3f4f6] border-[#23272e]')}
                       hover:scale-110`}
                     aria-label={`Mood ${idx + 1}`}
@@ -69,7 +69,7 @@ export default function MoodEntry({ onNewEntry, user }) {
           </ReleaseOnScroll>
           <ReleaseOnScroll delay={600}>
             <textarea
-              className="w-full h-32 p-3 mt-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400"
+              className="w-full h-24 p-3 mt-4 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-400 text-sm sm:h-28 sm:text-base md:h-32"
               placeholder="Write your thoughts, feelings, or anything on your mind..."
               value={journal}
               onChange={e => setJournal(e.target.value)}
@@ -78,7 +78,7 @@ export default function MoodEntry({ onNewEntry, user }) {
           <ReleaseOnScroll delay={700}>
             <button
               type="submit"
-              className={`w-full py-2 font-bold transition rounded-md hover:scale-105 hover:shadow-xl duration-200 border-2 ${isDark ? 'bg-[#bdbdbd] text-[#23272e] border-[#bdbdbd]' : 'bg-[#23272e] text-[#f3f4f6] border-[#23272e]'} ${!user ? 'opacity-50 cursor-not-allowed' : ''}`}
+              className={`w-full py-2 mt-2 font-bold transition rounded-md hover:scale-105 hover:shadow-xl duration-200 border-2 text-sm sm:py-3 sm:text-base ${isDark ? 'bg-[#bdbdbd] text-[#23272e] border-[#bdbdbd]' : 'bg-[#23272e] text-[#f3f4f6] border-[#23272e]'} ${!user ? 'opacity-50 cursor-not-allowed' : ''}`}
               disabled={!user}
             >
               Add Entry
@@ -86,7 +86,7 @@ export default function MoodEntry({ onNewEntry, user }) {
           </ReleaseOnScroll>
           {!user && (
             <ReleaseOnScroll delay={800}>
-              <div className="mt-2 text-sm text-red-500 text-center">You must be logged in to add an entry.</div>
+              <div className="mt-2 text-xs text-red-500 text-center sm:text-sm">You must be logged in to add an entry.</div>
             </ReleaseOnScroll>
           )}
         </form>
